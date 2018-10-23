@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "angular2-demo"
+		},
+		{
+			"path": "nodejs-express-demo"
+		},
+		{
+			"path": "my-routing-app"
+		},
+		{
+			"path": "ng2-fundas"
+		}
+	],
+	"settings": {}
+}
