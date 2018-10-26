@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import  '..\node_modules\bootstrap\dist\css\bootstrap.css';
+/*@import '..\node_modules\ngf-bootstrap\dist\bootstrap.min.css';*/
+
+.hoverwell:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+  }
+  
+  .container {
+    padding-top: 10px;
+  }
+  
+  .pointable {
+    cursor: pointer;
+  }
+  
+  button {
+    color: #555;
+  }
+  
+  [hidden] {
+    display: none !important;
+  }
+  
+  .toast-success {
+    background-color: #51a351;
+  }
+  .toast-error {
+    background-color: #bd362f;
+  }
+  .toast-info {
+    background-color: #2f96b4;
+  }
+  .toast-warning {
+    background-color: #f89406;
+  }
