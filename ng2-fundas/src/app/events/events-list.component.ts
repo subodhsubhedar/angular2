@@ -1,5 +1,6 @@
 import { EventsService } from './shared/event.service';
 import { Component, OnInit } from '@angular/core';
+import { ToasterWrapperService } from '../common/toaster.service';
 
 @Component({
     selector: 'events-list',
@@ -9,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
     <hr />
     <div class="row">
 
-    <div class="col-md-5 well hoverwell thumbnail" *ngFor="let eventCurr of events1">
+    <div class="col-md-5 well hoverwell thumbnail" *ngFor="let eventCurr of events1" >
 
-                <event-thumbnail #thumbnail [event]="eventCurr" (eventClicked)="handleEventClicked($event)" >
+                <event-thumbnail #thumbnail [event]="eventCurr" (eventClicked)="handleEventClicked($event)"  (click)="hadleThumbnailClick(eventCurr)">
                 </event-thumbnail>
 
                     <!--  <h2> {{thumbnail.someProp}}</h2> 
@@ -29,7 +30,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsListComponent implements OnInit {
 
-    constructor(private eventService: EventsService) { }
+    constructor(private eventService: EventsService, private toasterWrapperService: ToasterWrapperService) { }
 
     events1: any[];
 
@@ -41,6 +42,10 @@ export class EventsListComponent implements OnInit {
         console.log("from parent component -" + data);
 
     }
+ 
+    hadleThumbnailClick(event) {
+    //    this.toasterWrapperService.doSuccess(event.name);
 
+    }
 
 }

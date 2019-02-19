@@ -1,0 +1,34 @@
+<br>
+<br>
+<div class="form-group">
+    <label for="filterKey">Filter posts by : {{postsListFilter}}</label>
+    <input [(ngModel)]='postsListFilter' type="text" class="form-control" id="filterKey" placeholder="Enter Search keyword">
+
+</div>
+
+<table class="table table-hover table-bordered" *ngIf='filteredPosts && filteredPosts.length'>
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Post ID</th>
+            <th scope="col">Post Title</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let post of filteredPosts'> 
+            <td align="center">{{post.id}}</td>
+            <td>
+                <a  [routerLink]="['/posts',post.id]" >{{post.title}}</a>
+            </td>
+            <td align="center">{{post.userId}}</td>
+            <td align="center">
+                    <button type="button" class="btn btn-outline-info" (click)='onButtonClick("editAction"+post.id)'>Edit</button>
+            </td>
+            <td align="center">
+                    <button type="button" class="btn btn-outline-danger" (click)='onDelete(post.id)'>Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
 
   <nav-bar></nav-bar>
-  <events-list></events-list>
+ <router-outlet>/<router-outlet>
     `
 
 })

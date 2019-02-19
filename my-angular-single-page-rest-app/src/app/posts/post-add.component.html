@@ -1,0 +1,47 @@
+<br>
+<br>
+<div class="jumbotron">
+
+    <form name="add-post-form">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <b><label for="postIdInput">Post Id</label></b>
+                <input type="number" name="postIdInput" min="1" class="form-control" id="postIdInput" [(ngModel)]="post.id" placeholder="Post ID"
+                    required>
+            </div>
+            <div class="form-group col-md-6">
+                <b> <label for="userIdInput">User Id</label></b>
+                <input type="number" min="1" class="form-control" name="userIdInput" id="userIdInput" [(ngModel)]="post.userId"
+                    placeholder="User ID" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <b><label for="postTitle">Title</label></b>
+            <input type="text" class="form-control" name="postTitle" id="postTitle" placeholder="Title" [(ngModel)]="post.title"
+                maxlength="100" required>
+        </div>
+
+        <div class="form-group">
+            <b><label for="postBody">Content</label></b>
+            <textarea class="form-control" name="postBody" id="postBody" [(ngModel)]="post.body" rows="10" maxlength="2000" required
+                placeholder="Post Content..."></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <p class="lead" align="left">
+                    <button type="submit" class="btn btn-primary" (click)='addPost()'>Submit</button>
+                </p>
+            </div>
+            <div class="form-group col-md-6">
+                <p class="lead" align="right">
+               
+                </p>
+            </div> 
+
+
+        </div>
+    </form>
+
+
+</div>

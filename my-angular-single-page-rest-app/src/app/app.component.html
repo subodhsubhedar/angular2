@@ -1,0 +1,24 @@
+<div class="container">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link active" [routerLink]="['/home']">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/posts']">View all posts</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/addPost']">Add post</a>
+    </li>
+  </ul>
+
+
+  <div class="alert alert-info" role="alert" *ngIf='userAction && userAction.includes("editActionClicked")'>
+    {{userAction}}
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf='userAction && userAction.includes("deleteActionClicked")'>
+    {{userAction}}
+  </div>
+
+
+  <router-outlet (buttonClicked)='onButtonClick($event)'></router-outlet>
+</div>

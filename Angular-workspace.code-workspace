@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "ng2-fundas"
+		},
+		{
+			"path": "my-angular-single-page-rest-app"
 		}
 	],
 	"settings": {}
