@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
+import { IPost } from './post';
+import { PostsService } from './posts.service';
 
 @Injectable({
     providedIn : 'root'
 }
 )
-export class PostDetailsActivateGuard implements CanActivate {
+export class PostDetailsActivateGuard implements CanActivate, Resolve<IPost> {
 
-    constructor(private router : Router){}
+    constructor(private router : Router,private  postsService : PostsService){}
 
     canActivate(
         route: ActivatedRouteSnapshot,
@@ -26,5 +28,13 @@ export class PostDetailsActivateGuard implements CanActivate {
             return true;
         }
     }
+
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IPost> {
+        let id = +route.paramMap.get("id");
+       
+        return this.postsService.findPostById(id);
+    }
+
+
 
 }

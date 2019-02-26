@@ -13,16 +13,18 @@ export class PostDetailsComponent implements OnInit {
 
     idPost: number;
 
-    constructor(private postsService: PostsService, private route: ActivatedRoute, private router: Router) {
+    constructor(private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
-        let id = +this.route.snapshot.paramMap.get("id");
+    /*        let id = +this.route.snapshot.paramMap.get("id");
         this.idPost = id;
         this.postsService.findPostById(id).subscribe(
             postFoundById => this.post = postFoundById,
             error => this.errorMsg = <any>error
-        );
+        );*/
+        this.post = this.route.snapshot.data['post'];
+
     }
 
     onBack(): void {

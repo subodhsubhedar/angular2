@@ -12,25 +12,57 @@ import { RouterModule } from '@angular/router';
 import { PostDetailsComponent } from './posts/post-details.component';
 import { PostDetailsActivateGuard } from './posts/post-details.guard';
 import { AddPostComponent } from './posts/post-add.component';
+import { PostsResolverService } from './posts/posts-list.resolver.service';
+import { UpdatePostComponent } from './posts/post-update.component';
+import { StatusMsgEmitterService } from './common/status-msg.emitter.service';
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, PostsListComponent, PostDetailsComponent,AddPostComponent
-  ],
+    AppComponent, HomeComponent, PostsListComponent, PostDetailsComponent, AddPostComponent,UpdatePostComponent
+  ], 
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: 'home', component: HomeComponent },
-      { path: 'posts', component: PostsListComponent },
-      { path: 'posts/:id', canActivate: [PostDetailsActivateGuard], component: PostDetailsComponent },
-      { path: 'addPost', component: AddPostComponent },
-      { path: '**', pathMatch: 'full', redirectTo: 'home' },
-      { path: '', pathMatch: 'full', redirectTo: 'home' }
-    ]
+      { 
+        path: 'home', 
+        component: HomeComponent 
+      },
+      { 
+        path: 'posts', 
+        component: PostsListComponent, 
+        resolve: { postsList: PostsResolverService } 
+      },
+      { 
+        path: 'posts/:id', 
+        canActivate: [PostDetailsActivateGuard], 
+        resolve: { post: PostDetailsActivateGuard }, 
+        component: PostDetailsComponent 
+      },
+      { 
+        path: 'addPost', 
+        component: AddPostComponent 
+      },
+      { 
+        path: 'updatePost/:id', 
+        canActivate: [PostDetailsActivateGuard], 
+        resolve: { post: PostDetailsActivateGuard }, 
+        component: UpdatePostComponent 
+      },      
+     /*{ 
+        path: '**', 
+        pathMatch: 'full', 
+        redirectTo: 'home' 
+      },*/
+      { 
+        path: '', 
+        pathMatch: 'full', 
+        redirectTo: 'home' 
+      }
+    ] 
     )],
-  providers: [PostsService],
+  providers: [PostsService, PostsResolverService,StatusMsgEmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { } 

@@ -9,7 +9,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 )
 export class PostsService {
-    private postsUrl: string = "https://jsonplaceholder.typicode.com/posts";
+    //private postsUrl: string = "https://jsonplaceholder.typicode.com/posts";
+    //private postsUrl: string ="assets/api/mock-rest-service-data.json";
+    private postsUrl: string =  "http://localhost:3000/posts";
 
     constructor(private http: HttpClient) { }
 
@@ -21,26 +23,31 @@ export class PostsService {
     }
 
     findPostById(id: number): Observable<IPost> {
-
+        console.log("finding post by id : "+id);
         return this.http.get<IPost>(this.postsUrl + "/" + id).
-            pipe(tap(data => console.log(JSON.stringify(data))));
+            pipe(tap(data => console.log('http get by id responded')));
     }
 
-    addPost(post: IPost) {
-
+    addPost(post: IPost): Observable<IPost[]> {
+        console.log("Calling http post...");
+        return this.http.post<IPost[]>(this.postsUrl, post).
+            pipe(tap(data => console.log('http post responded')));
     }
 
-    updatePost(post: IPost) {
 
-    }
 
-    deletePost(id: number): Observable<IPost> {
-
-        return this.http.delete<IPost>(this.postsUrl + "/" + id).pipe(
-            tap(_ => console.log('deleted POST id='+id)),
-            catchError(this.handleError<IPost>('delete ERROR'))
+    updatePost(post: IPost):Observable<IPost[]> {
+        return this.http.put<IPost[]>(this.postsUrl , post).pipe(
+            tap(_ => console.log('updated POST ' + post)),
+            catchError(this.handleError<IPost[]>('UPDATE ERROR'))
         );
+    }
 
+    deletePost(id: number): Observable<IPost[]> {
+        return this.http.delete<IPost[]>(this.postsUrl + "/" + id).pipe(
+            tap(_ => console.log('deleted POST id=' + id)),
+            catchError(this.handleError<IPost[]>('delete ERROR'))
+        );
     }
 
     handleError1(err: HttpErrorResponse) {

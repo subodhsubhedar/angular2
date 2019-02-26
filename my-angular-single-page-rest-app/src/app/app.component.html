@@ -10,15 +10,12 @@
       <a class="nav-link" [routerLink]="['/addPost']">Add post</a>
     </li>
   </ul>
+<br>
+<br>
 
-
-  <div class="alert alert-info" role="alert" *ngIf='userAction && userAction.includes("editActionClicked")'>
-    {{userAction}}
+  <div class="alert alert-success" role="alert" *ngIf="notification" >
+    {{notification}}
   </div>
-  <div class="alert alert-danger" role="alert" *ngIf='userAction && userAction.includes("deleteActionClicked")'>
-    {{userAction}}
-  </div>
-
-
-  <router-outlet (buttonClicked)='onButtonClick($event)'></router-outlet>
+ 
+  <router-outlet></router-outlet>
 </div>

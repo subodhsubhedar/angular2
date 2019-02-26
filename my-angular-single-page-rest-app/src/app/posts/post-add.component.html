@@ -1,47 +1,65 @@
 <br>
 <br>
-<div class="jumbotron">
 
-    <form name="add-post-form">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <b><label for="postIdInput">Post Id</label></b>
-                <input type="number" name="postIdInput" min="1" class="form-control" id="postIdInput" [(ngModel)]="post.id" placeholder="Post ID"
-                    required>
+<!--Angular generated form model : {{addPostForm.value|json}}-->
+<br>
+
+<div class="card-header bg-primary  text-white">Add New Post</div>
+<div class="card container">
+    <div class="card-block">
+        <form #addPostForm="ngForm">
+            <div class="form-row">
+                <div class="form-group col-md-6 " [class.has-error]="postIdControl.invalid && postIdControl.touched"
+                    [class.has-success]="postIdControl.valid">
+                    <b><label for="postIdInput" class="control-label">Post Id</label></b>
+                    <input type="number" name="postIdInput" min="1" class="form-control" id="postIdInput" [(ngModel)]="post.id"
+                        #postIdControl="ngModel" placeholder="Post ID" required [disabled]="flow == 'update'">
+                    <span class="help-block" *ngIf="postIdControl.invalid && postIdControl.touched">Post id is
+                        required.</span>
+                </div>
+                <div>
+                </div>
+                <div class="form-group col-md-6" [class.has-error]="userIdControl.invalid && userIdControl.touched"
+                    [class.has-success]="userIdControl.valid">
+                    <b> <label for="userIdInput">User Id</label></b>
+                    <input type="number" min="1" class="form-control" name="userIdInput" id="userIdInput" [(ngModel)]="post.userId"
+                        placeholder="User ID" required #userIdControl="ngModel" [disabled]="flow == 'update'">
+                    <span class="help-block" *ngIf="userIdControl.invalid && userIdControl.touched">User id is
+                        required.</span>
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                <b> <label for="userIdInput">User Id</label></b>
-                <input type="number" min="1" class="form-control" name="userIdInput" id="userIdInput" [(ngModel)]="post.userId"
-                    placeholder="User ID" required>
+            <div class="form-group" [class.has-error]="postTitleControl.invalid && postTitleControl.touched"
+                [class.has-success]="postTitleControl.valid">
+                <b><label for="postTitle">Title</label></b>
+                <input type="text" class="form-control" name="postTitle" id="postTitle" placeholder="Title" [(ngModel)]="post.title"
+                    maxlength="100" required #postTitleControl="ngModel">
+                <span class="help-block" *ngIf="postTitleControl.invalid && postTitleControl.touched">Post Title is
+                    required.</span>
             </div>
-        </div>
-        <div class="form-group">
-            <b><label for="postTitle">Title</label></b>
-            <input type="text" class="form-control" name="postTitle" id="postTitle" placeholder="Title" [(ngModel)]="post.title"
-                maxlength="100" required>
-        </div>
 
-        <div class="form-group">
-            <b><label for="postBody">Content</label></b>
-            <textarea class="form-control" name="postBody" id="postBody" [(ngModel)]="post.body" rows="10" maxlength="2000" required
-                placeholder="Post Content..."></textarea>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <p class="lead" align="left">
-                    <button type="submit" class="btn btn-primary" (click)='addPost()'>Submit</button>
-                </p>
+            <div class="form-group" [class.has-error]="postBodyControl.invalid && postBodyControl.touched"
+                [class.has-success]="postBodyControl.valid">
+                <b><label for="postBody">Content</label></b>
+                <textarea class="form-control" name="postBody" id="postBody" [(ngModel)]="post.body" rows="10"
+                    maxlength="2000" required placeholder="Post Content..." #postBodyControl="ngModel"></textarea>
+                <span class="help-block" *ngIf="postBodyControl.invalid && postBodyControl.touched">Post Content is
+                    required.</span>
             </div>
-            <div class="form-group col-md-6">
-                <p class="lead" align="right">
-               
-                </p>
-            </div> 
+
+            <div class="form-row">
+                <div class="form-group col-md-6" *ngIf="flow == 'add'" > 
+                    <p class="lead" align="left" >
+                        <button type="submit" class="btn btn-primary" [disabled]="addPostForm.invalid" (click)="addNewPost(post)">Submit</button>
+                    </p>
+                </div>
+                <div class="form-group col-md-6" *ngIf="flow == 'update'">
+                    <p class="lead" align="left">
+                            <button type="submit" class="btn btn-primary" [disabled]="addPostForm.invalid" (click)="updatePost(post)">Update</button>
+                    </p>
+                </div> 
 
 
-        </div>
-    </form>
-
-
+            </div>
+        </form>
+    </div>
 </div>

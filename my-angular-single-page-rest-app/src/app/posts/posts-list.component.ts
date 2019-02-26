@@ -1,7 +1,8 @@
+import { StatusMsgEmitterService } from './../common/status-msg.emitter.service';
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { IPost } from './post';
 import { PostsService } from './posts.service';
-import { post } from 'selenium-webdriver/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -20,21 +21,24 @@ export class PostsListComponent implements OnInit {
 
     errorMsg: string;
 
-    @Output() buttonClicked: EventEmitter<string> = new EventEmitter<string>();
-
-    constructor(private postsService: PostsService) {
+    constructor(private postsService: PostsService, private route: ActivatedRoute, 
+        private router: Router, private statusMsgService : StatusMsgEmitterService) {
         this._postsListFilter = "";
+        this.posts = route.snapshot.data['postsList'];
+        this.filteredPosts = this.posts;
 
+        this.statusMsgService.notifyMsg('');
     }
+    ngOnInit(): void { }
 
-    ngOnInit(): void {
-        this.postsService.findAllPosts().subscribe(posts => {
-            this.posts = posts;
-            this.filteredPosts = this.posts;
-        },
-            error => this.errorMsg = <any>error);
-
-    }
+    /* ngOnInit(): void {
+         this.postsService.findAllPosts().subscribe(posts => {
+             this.posts = posts;
+             this.filteredPosts = this.posts;
+         },
+             error => this.errorMsg = <any>error);
+ 
+     }*/
 
     get postsListFilter(): string {
         return this._postsListFilter;
@@ -50,20 +54,26 @@ export class PostsListComponent implements OnInit {
         return this.posts.filter((post: IPost) => post.title.toLowerCase().indexOf(filterBy) != -1);
 
     }
+    onDelete(id: number): void {
+        let deleteTitle = (this.posts.find(obj => obj.id == id)).title;
+        var answer = confirm("Are you sure you want to delete : " + deleteTitle);
+        if (answer) {
+            console.log('calling delete for : ' + id);
 
-    onButtonClick(userAction: string): void {
-        this.buttonClicked.emit(userAction + 'Clicked');
+            this.postsService.deletePost(id).subscribe(res => {
+                console.log('Delete done callback ' + JSON.stringify(res));
+                this.posts = res;
+                this.filteredPosts = res;
+            });
+
+            console.log('Delete performed successfully ');
+            this.statusMsgService.notifyMsg('Post with title : "'+ deleteTitle+ '" deleted successfully.');
+        }
     }
 
-
-    onDelete(id: number): void {
-        console.log('calling delete for : ' + id);
-
-
-        this.postsService.deletePost(id).subscribe(res => 
-            console.log("delete .." + res.title));
-
-        console.log('Delete done ');
+    onEdit(id: number): void {
+        console.log('calling update post with id :' + id);
+        this.router.navigate(['/updatePost', id]);
 
     }
 }
