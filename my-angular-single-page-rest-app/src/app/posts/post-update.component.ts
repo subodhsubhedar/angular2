@@ -35,4 +35,6 @@ export class UpdatePostComponent implements OnInit {
         this.router.navigate(['/home']);
     }
 
+    addNewPost(post: IPost): void {
+    }
 } 

@@ -31,15 +31,6 @@ export class PostsListComponent implements OnInit {
     }
     ngOnInit(): void { }
 
-    /* ngOnInit(): void {
-         this.postsService.findAllPosts().subscribe(posts => {
-             this.posts = posts;
-             this.filteredPosts = this.posts;
-         },
-             error => this.errorMsg = <any>error);
- 
-     }*/
-
     get postsListFilter(): string {
         return this._postsListFilter;
     }

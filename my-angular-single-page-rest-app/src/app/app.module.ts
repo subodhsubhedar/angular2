@@ -50,11 +50,11 @@ import { StatusMsgEmitterService } from './common/status-msg.emitter.service';
         resolve: { post: PostDetailsActivateGuard }, 
         component: UpdatePostComponent 
       },      
-     /*{ 
+     { 
         path: '**', 
         pathMatch: 'full', 
         redirectTo: 'home' 
-      },*/
+      },
       { 
         path: '', 
         pathMatch: 'full', 

@@ -47,19 +47,19 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6" *ngIf="flow == 'add'" > 
-                    <p class="lead" align="left" >
+                <div class="form-group col-md-6" *ngIf="flow == 'add'">
+                    <p class="lead" align="left">
                         <button type="submit" class="btn btn-primary" [disabled]="addPostForm.invalid" (click)="addNewPost(post)">Submit</button>
                     </p>
                 </div>
                 <div class="form-group col-md-6" *ngIf="flow == 'update'">
                     <p class="lead" align="left">
-                            <button type="submit" class="btn btn-primary" [disabled]="addPostForm.invalid" (click)="updatePost(post)">Update</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="addPostForm.invalid" (click)="updatePost(post)">Update</button>
                     </p>
-                </div> 
+                </div>
 
 
             </div>
         </form>
-    </div>
+    </div> 
 </div>

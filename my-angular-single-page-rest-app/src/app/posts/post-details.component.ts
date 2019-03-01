@@ -17,12 +17,7 @@ export class PostDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-    /*        let id = +this.route.snapshot.paramMap.get("id");
-        this.idPost = id;
-        this.postsService.findPostById(id).subscribe(
-            postFoundById => this.post = postFoundById,
-            error => this.errorMsg = <any>error
-        );*/
+    
         this.post = this.route.snapshot.data['post'];
 
     }
@@ -30,5 +25,8 @@ export class PostDetailsComponent implements OnInit {
     onBack(): void {
         this.router.navigate(['/posts']);
     }
+
+    
+
 
 } 

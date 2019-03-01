@@ -10,7 +10,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 )
 export class PostsService {
     //private postsUrl: string = "https://jsonplaceholder.typicode.com/posts";
-    //private postsUrl: string ="assets/api/mock-rest-service-data.json";
     private postsUrl: string =  "http://localhost:3000/posts";
 
     constructor(private http: HttpClient) { }
