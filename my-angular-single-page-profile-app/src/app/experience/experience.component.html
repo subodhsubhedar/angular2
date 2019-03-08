@@ -1,0 +1,224 @@
+<main>
+  <section id="overallExSection">
+    <section id="experienceSummarySec">
+      <article id="experienceSummaryArticle">
+        <header>
+          
+            <h4>
+              Experience Summary
+            </h4>
+            <p>
+              <strong> 11 years & 10 months </strong> of experience in software industry (<strong>Banking & Financial
+                Services domain</strong>)
+              and currently working at <strong>Cognizant</strong> Technology Solutions India Pvt. Ltd, Pune as a
+              <strong>Project
+                Manager and Tech Lead</strong>.
+              My previous organization was <strong>Capgemini.</strong> Software India Pvt. Ltd.
+            </p>
+          
+        </header>
+
+        <ul id="experienceArticleUList">
+
+          <li>Thorough experience of working on projects for worldâ€™s largest banks like â€“ <strong>HSBC, UBS
+            </strong>in
+            core product development area
+            as well as regional implementations like US, UK, Canada etc.
+          </li>
+          <li>Well-versed with all stages of SDLC phases & experienced on a complete project life cycle of flagship
+            projects â€“ enterprise
+            web application based on <strong>J2EE</strong> architecture in <strong>Banking & Financial services domain.</strong>
+          </li>
+          <li>Worked as <strong>On-site Project Lead and Coordinator</strong> (2 yrs.) at New Jersey, United States.
+          </li>
+          <li>
+            Scrum Alliance <strong>Certified Agile Scrum-Master.</strong>
+          </li>
+          <li>Extensive working experience in enterprise web application development involving J2EE artifacts such as
+            JSP,
+            Servlets,
+            JDBC.
+          </li>
+          <li>Hands-on on open source frameworks such as <strong>Struts, Spring & Hibernate></strong> well as
+            proprietary
+            development
+            suites / tools etc.
+          </li>
+          <li>Expertise in reporting framework â€“ <strong>Jasper Reports</strong> involving designing the layouts of
+            complex graphical
+            reports in iReport, implementation of drill down, dynamic sorting, etc., deployment and integration with
+            Jasper
+            Server,
+            High volume batch processing of reports.
+          </li>
+          <li>Extensively worked on advanced Jasper reports with customization over & above the standard features
+            provided
+            by the
+            framework for <strong>Portfolio Management</strong> within wealth management area for UBS bank with complex
+            tables,
+            charts, data-source as web services (customized jasper data-source).
+          </li>
+          <li> Worked as a Jasper Reports Expert on various Project proposals & resolutions for complex problems for
+            other
+            clients
+            â€“ Banks & Financial institutions within Cognizant for Jasper Reports new implementation/ migration, over
+            and
+            above
+            regular project work.
+          </li>
+          <li>Currently undergoing <strong>Full stack Java developer</strong> program training conducted by the
+            organization covering
+            â€“ <strong>HTML5, CSS,
+              JavaScript, JQuery, Angular JS, Bootstrap, Spring framework, Spring Boot, Jenkins, Hibernate, Maven,
+              Pivotal
+              Cloud
+              foundry, Docker concept, Microservices.</strong>
+          </li>
+          <div *ngIf="newExperItemArray && newExperItemArray.length">
+              <li *ngFor="let newEx of newExperItemArray; let i = index">
+                {{newEx}}
+                <br>
+                <button (click)='removeExper(i)' class="btn btn-danger" id="removeBtn">X Remove</button>
+              </li>
+            </div>
+        </ul>
+
+
+        <div class="container">
+          <div class="card border-primary">
+            <div class="badge badge-primary text-left">
+
+              <h5> Add a new point in Experience</h5>
+
+            </div>
+            <div class="card-body">
+              <p class="card-text">
+                <textarea maxlength="200" rows="8" [(ngModel)]="addExperIpText"  id="addExperience-input" required placeholder="Add content here.."
+                  WRAP="hard"></textarea>
+              </p>
+              <button (click)='addExper()' class="btn btn-primary" id="addExperienceBtn">Add</button>              
+            </div>
+          </div>
+        </div>
+
+      </article>
+    </section>
+
+
+    <section id="skillsSummarySec">
+      <article id="skillsSummaryArticle">
+        <header>
+        
+            <h4>
+              Skills Summary
+            </h4>
+        
+        </header>
+
+        <ul>
+          <li>
+            <strong> Technical Skills - Enterprise web application development and maintenance </strong>
+          </li>
+
+          <li>
+            Worked in financial domain, within areas like â€“ Portfolio management reporting solutions for Financial
+            Advisory Programs,
+            Call center applications for Retail Banking, applications interacting with mainframe systems, Epro Dialer
+            (CTI/IVR)
+            Integration for Collections Tracking (CTA Mainframe system), Inbound / Outbound dialing solutions â€“ for
+            Retail Banking
+            & Credit cards, Document Management Services (Account opening and Account maintenance).
+          </li>
+          <li>
+            Experienced in a complete project life cycle implementations of enterprise web applications based on a
+            Bankâ€™s
+            proprietary
+            Frameworks/ Development Suite (developed in house) as well as open source technologies
+          </li>
+          <li>
+            Expertise in Jasper reports technology â€“ Jasper reports API & Jasper reports server had been appreciated
+            very
+            much by the
+            client.
+          </li>
+          <li>
+            Requirement analysis, Solution Proposals, estimations, development and troubleshooting
+          </li>
+          <li>
+            Well versed in preparing Functional docs, Use case docs, Page Specifications & Technical Specifications
+            (includes preparation
+            of Use case diagrams, Class diagrams, activity diagrams and sequence diagrams).
+          </li>
+          <li>
+            Adept in preparing & maintaining documents, reports and presentations for all process artifacts relevant to
+            the project -
+            like â€“ query logs, review logs, estimations, defect tracking sheet, defect root cause analysis &
+            remediation
+            plan,
+            weekly status reports etc.
+          </li>
+          <li>
+            Unit Testing, System Integration Testing, User acceptance Testing & post production support.
+          </li>
+          <li>
+            Configuration management, build deployment using Team-site & Release Notes preparation.
+          </li>
+
+          <li>
+            <strong> Analytical and Problem Solving skills</strong>
+          </li>
+          <li>
+            Strong analytic, trouble-shooting, and problem-solving skills, played a crucial role in the resolution of
+            complex defects
+            during visit at the actual production site (an India based call center for UK Branch).
+          </li>
+          <li>
+            Analysis & resolution of complex production issues for jasper reports implementation
+          </li>
+
+          <li>
+            <strong>Presentation Skills</strong>
+          </li>
+          <li>
+            Conducted application Demos, scrum meetings.
+          </li>
+          <li>
+            Presentations on project proposals.
+          </li>
+          <li>
+            Conducted and hosted web ex sessions, class room training at organization level, Net meetings and
+            teleconferences with client
+            /other teams.
+          </li>
+
+          <li>
+            <strong>Leadership Skills</strong>
+          </li>
+          <li>
+            Ability to function as a single point of contact for different teams
+          </li>
+
+          <li>
+            Worked as an on-site project lead & coordinator.
+          </li>
+          <li>
+            Currently working as, a Project Manager & Tech Lead, team size â€“ 15.
+          </li>
+          <li>
+            Ability to coordinate and interact with Client ensuring speedy resolution of queries and grievances to
+            maximize client satisfaction
+            levels.
+          </li>
+          <li>
+            Strong team player with excellent interpersonal, communication and organizational skills.
+          </li>
+
+        </ul>
+
+
+      </article>
+    </section>
+
+
+  </section>
+</main>

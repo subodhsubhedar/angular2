@@ -1,0 +1,170 @@
+<main>
+  <section id="personalDtlSection">
+
+    <article id="personalDetailsArticle">
+      <header>
+        <h4>
+          Personal Details
+        </h4>
+
+      </header>
+
+      <ul>
+        <li>
+          I was born on
+          <time datetime="1984-08-13">13<sup>th</sup> Aug 1984</time>
+        </li>
+        <li>
+          I live in Pune, India,
+        </li>
+        <li>
+          I am married.
+        </li>
+        <li>
+          Language proficiency - English, Hindi and Marathi.
+        </li>
+        <li>
+          I love music, movies and reading.
+        </li>
+      </ul>
+
+      <br>
+
+      <ul>
+        <li>
+
+          Phone : 9552178900
+        </li>
+        <li> Email : subodh.subhedar@cognizant.com
+        </li>
+        <li>
+          <address>
+            Address : Katraj, Pune
+          </address>
+
+        </li>
+      </ul>
+
+    </article>
+  </section>
+
+  <section id="qualificationsSection">
+
+    <article id="qualificationsArticle">
+      <header>
+        <h4>
+          Qualifications
+        </h4>
+
+      </header>
+
+      <ul id="qualificationsArticleUList">
+        <li>
+          2002-2006 : <b> B.E., Bachelor of Engineering </b>, SGSITS â€“ Shri Govindram Seksariya Institute of
+          Technology
+          and Science â€“ INDORE,
+          (72%) M.P.
+        </li>
+        <li>
+          2001- 2002 : XII CBSE, 85 %
+        </li>
+        <li>
+          1999- 2000 : X CBSE, 80 %
+        </li>
+        <div id="qualificationsArticleUList" *ngIf="newQlfctnItemArray && newQlfctnItemArray.length">
+          <li *ngFor="let newQ of newQlfctnItemArray; let i = index">
+            {{newQ}}
+            <br>
+            <button (click)='removeQualification(i)' class="btn btn-danger" id="removeBtn">X Remove</button>
+          </li>
+        </div>
+      </ul>
+
+      <br>
+      <br>
+
+      <div class="container">
+        <div class="card border-primary">
+          <div class="badge badge-primary text-left">
+
+            <h5> Add New Qualification</h5>
+
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <textarea maxlength="200" rows="8" ngmo cols="100" [(ngModel)]="addQlfctnIpText" id="addQlfctnIpText"
+                required placeholder="Add content here.." WRAP="hard"></textarea>
+            </p>
+            <button (click)='addQualifications()' class="btn btn-primary" id="addQualificationsBtn">Add</button>
+
+          </div>
+        </div>
+      </div>
+
+    </article>
+  </section>
+
+  <section id="certificationsSection">
+
+    <article id="certificationsArticle">
+      <header>
+        <h4>
+          Certifications
+        </h4>
+
+      </header>
+
+      <ul>
+        <li>
+          <b> SCJP (Sun Certified Java Professional Certification)</b> for Java 1.5, Score â€“ 95%
+        </li>
+        <li>
+          <b> Scrum Alliance Certified Agile Certified Scrum-Masters </b>
+        </li>
+
+
+      </ul>
+
+    </article>
+  </section>
+
+  <section id="accoladesSection">
+
+    <article id="accoladesArticle">
+      <header>
+        <h4>
+          Awards & Accolades
+        </h4>
+
+      </header>
+
+      <ul>
+        <li>
+          <b>Best Emerging Leader </b>-Q1-2018 from Cognizant.
+        </li>
+        <li>
+          Appreciation from client and higher management for performance as a <b>Jasper report expert </b> On-site.
+        </li>
+        <li>
+          <b> â€˜eKnowatorâ€™ </b> from Cognizant for outstanding performance at onsite location year-2013.
+        </li>
+        <li>
+          Awards from Cognizant for outstanding performance during Q4 â€“ 2011 & 2010.
+        </li>
+        <li>
+          <b>â€˜Rising star awardâ€™ </b> an outstanding performance and excellent leadership skills while working at
+          Client
+          Site
+          on a flagship project.
+        </li>
+        <li>
+          <b> â€˜Spot Recognition Awardâ€™ </b>for excellent trouble shooting skills and speedy resolution of complex
+          issues.
+        </li>
+
+      </ul>
+
+    </article>
+  </section>
+
+</main>

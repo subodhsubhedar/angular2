@@ -1,0 +1,82 @@
+h1 { 
+  
+    font-family: "Times New Roman", Times, serif;
+    font-size: 40px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+    
+  } 
+  h2 { 
+    
+    font-family: Arial;
+    font-size: 25px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 15.4px; 
+    color: darkslateblue; 
+    letter-spacing: 0.75px;
+    word-spacing: 2.5px;
+  
+  } 
+  
+  h3 { 
+    
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px; 
+    font-style: normal; 
+    font-variant: normal; 
+  } 
+  p { 
+    padding: 10px;
+    margin: auto;
+    font-family: Calibri;
+    font-size: 20px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 520; 
+    line-height: 20px;
+    color: darkslateblue; 
+  
+    letter-spacing: 0.75px;
+    word-spacing: 2.5px;
+  
+  } 
+  
+  table td { 
+    padding: 10px;
+    margin: auto;
+    font-family: Calibri;
+    font-size: 20px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 520; 
+    line-height: 20px;
+  
+    letter-spacing: 0.75px;
+    word-spacing: 2.5px;
+  
+  } 
+  
+  section {
+    border: none;
+    margin: 10px;
+  }
+  
+  article {
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+  
+  }
+  
+  a:hover {
+    color:lightsalmon;
+  }
+  
+  .embed-responsive-10by3 {
+    position: relative;
+    overflow: hidden;
+    }   
+  

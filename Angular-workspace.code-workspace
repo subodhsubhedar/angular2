@@ -14,6 +14,9 @@
 		},
 		{
 			"path": "my-angular-single-page-rest-app"
+		},
+		{
+			"path": "my-angular-single-page-profile-app"
 		}
 	],
 	"settings": {}

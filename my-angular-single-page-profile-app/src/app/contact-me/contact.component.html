@@ -1,0 +1,81 @@
+<header align="center"><br>
+
+  <h4>If you wish to contact me....</h4>
+</header>
+
+<main>
+  <section>
+
+    <article>
+      <div class="container">
+        <form class="form-horizontal" #contactDetailsForm="ngForm">
+          <div class="form-group" [class.has-error]="userNameControl.invalid && userNameControl.touched"
+            [class.has-success]="userNameControl.valid">
+            <div class="control-label  col-sm-2">
+              <b>Please select :</b>
+              <input type="text" id=data-list-input list="myList" required class="form-control" name="salutation"
+                [(ngModel)]="contact.salutation" />
+              <datalist id="myList">
+                <option label="Mr." value="Mr"></option>
+                <option label="Mrs." value="Mrs "></option>
+                <option label="Ms." value="Ms"></option>
+              </datalist>
+            </div>
+
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="text" class="form-control" name="userName" id="user-name-input" required [(ngModel)]="contact.userName"
+                #userNameControl="ngModel" placeholder="Please enter you name here" />
+              <span class="help-block" *ngIf="userNameControl.invalid && userNameControl.touched">User Name is
+                required.</span>
+
+            </div>
+          </div>
+          <div class="form-group" [class.has-error]="mobileNumControl.invalid && mobileNumControl.touched"
+            [class.has-success]="mobileNumControl.valid">
+            <b> <label class="control-label col-sm-2" for="tel-input">Mobile Number (xxx-xxx-xxxx): </label></b>
+            <div class="col-sm-offset-7 col-sm-3">
+              <input type="tel" class="form-control" name="mobileNum" [(ngModel)]="contact.mobileNum" id="tel-input"
+                pattern="\d{3}[\-]\d{3}[\-]\d{4}" required #mobileNumControl="ngModel" placeholder="Please enter your contact number here" />
+              <span class="help-block" *ngIf="mobileNumControl.invalid && mobileNumControl.touched">Mobile Number is
+                required.</span>
+            </div>
+          </div>
+
+          <div class="form-group" [class.has-error]="emailControl.invalid && emailControl.touched" [class.has-success]="emailControl.valid">
+            <b><label class="control-label col-sm-2" for="email-input">Email Address : </label></b>
+            <div class="col-sm-offset-5 col-sm-5">
+              <input type="email" class="form-control" name="email" [(ngModel)]="contact.email" #emailControl="ngModel"
+                id="email-input" required placeholder="Please enter your email here" />
+              <span class="help-block" *ngIf="emailControl.invalid && emailControl.touched">Email is
+                required.</span>
+            </div>
+          </div>
+
+
+          <div class="form-group" [class.has-error]="remarksControl.invalid && remarksControl.touched"
+            [class.has-success]="remarksControl.valid">
+            <b><label class="control-label col-sm-2" for="remarks-input">Remarks : </label></b>
+            <div class="col-sm-10">
+              <textarea class="form-control" maxlength="200" rows="8" cols="25" id="remarks-input" name="remarks"
+                [(ngModel)]="contact.remarks" #remarksControl="ngModel" required placeholder="Enter you remarks here"
+                WRAP="hard"></textarea>
+              <span class="help-block" *ngIf="remarksControl.invalid && remarksControl.touched">Remarks are
+                required.</span>
+
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary" [disabled]="contactDetailsForm.invalid" (click)="contactMe(contact)">Submit</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </article>
+
+  </section>
+</main>
