@@ -8,12 +8,13 @@ import { NavigationBarComponent } from './navigation/nav.component';
 import { StatusMsgEmitterService } from './common/status-msg-emitter.service';
 import { LibraryBooksComponent } from './books/library-books.component';
 import { LibraryBookService } from './service/library-book.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BookDetailsComponent } from './books/book-details.component';
 import { BookDetailsActivateGuard } from './books/book-details.guard';
 import { AddUpdateBookComponent } from './books/book-add-update.component';
 import { LibraryAddBookResolverService } from './books/book-add.resolver.sevice';
 import { HomeComponent } from './home/home.component';
+import { LibraryHttpErrorInterceptor } from './common/library.error.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,16 @@ import { HomeComponent } from './home/home.component';
 
     ]
     )],
-  providers: [StatusMsgEmitterService, LibraryBookService, LibraryBooksResolverService, LibraryAddBookResolverService],
+  providers: [StatusMsgEmitterService,
+    LibraryBookService,
+    LibraryBooksResolverService,
+    LibraryAddBookResolverService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LibraryHttpErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 

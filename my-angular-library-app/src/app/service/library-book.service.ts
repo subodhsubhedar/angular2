@@ -2,7 +2,7 @@ import { Subject } from './../subject/subject';
 import { Book } from './../books/book';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 
 @Injectable()
@@ -47,7 +47,9 @@ export class LibraryBookService {
         console.log('REQUEST TO ADD JSON :' + JSON.stringify(book))
 
         return this.http.put<Book>(this.libraryUrl + "book/update", book).
-            pipe(tap(data => console.log('http put responded, data updated succesfully :' + data)));
+            pipe(tap
+                (data =>
+                    console.log('http put responded, data updated succesfully :' + data)))
     }
 
 
@@ -55,8 +57,9 @@ export class LibraryBookService {
         return this.http.delete<Book>(this.libraryUrl + "book/delete/" + id).pipe(
             tap(data => console.log('deleted POST id tapped =' + id)),
         );
-
+ 
 
     }
+
 
 }
