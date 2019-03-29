@@ -1,0 +1,12 @@
+<div class="embed-responsive embed-responsive-10by3">
+  <div class="mynavheader">
+    <app-nav></app-nav>
+  </div>
+</div>
+<div>
+  <br>
+  <div class="alert alert-success" role="alert" *ngIf="notifications">
+    <b> {{notifications}}</b>
+  </div>
+
+  <router-outlet></router-outlet>

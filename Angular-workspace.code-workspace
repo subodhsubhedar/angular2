@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "my-angular-single-page-profile-app"
+		},
+		{
+			"path": "my-angular-library-app"
 		}
 	],
 	"settings": {}
