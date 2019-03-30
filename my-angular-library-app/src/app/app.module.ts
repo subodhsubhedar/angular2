@@ -22,7 +22,8 @@ import { LibraryHttpErrorInterceptor } from './common/library.error.service';
     LibraryBooksComponent, BookDetailsComponent, AddUpdateBookComponent, HomeComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot([
+    BrowserModule, FormsModule, HttpClientModule, 
+    RouterModule.forRoot([
       {
         path: 'listAllBooks',
         component: LibraryBooksComponent,
@@ -46,7 +47,8 @@ import { LibraryHttpErrorInterceptor } from './common/library.error.service';
         path: 'updateBook/:bookId',
         component: AddUpdateBookComponent,
         canActivate: [BookDetailsActivateGuard],
-        resolve: { subjectsList: LibraryAddBookResolverService, book: BookDetailsActivateGuard },
+        resolve: { subjectsList: LibraryAddBookResolverService, 
+          book: BookDetailsActivateGuard },
         runGuardsAndResolvers: 'always'
       },
       {

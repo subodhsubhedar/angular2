@@ -4,6 +4,9 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+
+@Injectable()
 
 export class LibraryHttpErrorInterceptor implements HttpInterceptor {
 
@@ -24,13 +27,13 @@ export class LibraryHttpErrorInterceptor implements HttpInterceptor {
                 err.forEach(errItem => {
                     errTxt = errTxt.concat("\n" + errItem);
                 });
-                errMsg = "Error Code : " + error.status + "\nError Status Text : " + error.statusText
-                    + "\nMessage : " + errTxt;
+                errMsg = "Error Code : " + error.status + "\n, Error Status Text : " + error.statusText
+                    + "\n, Message : " + errTxt;
                 console.log(errMsg);
             }
             //   window.alert(errMsg);
 
-            this.statusMsgEmitterService.notifyMsg(errMsg);
+            this.statusMsgEmitterService.notifyError(errMsg);
             return throwError(errMsg);
         }
         ))

@@ -9,4 +9,8 @@
     <b> {{notifications}}</b>
   </div>
 
+  <div class="alert alert-danger" role="alert" *ngIf="errors">
+    <b> {{errors}}</b>
+  </div>
+
   <router-outlet></router-outlet>

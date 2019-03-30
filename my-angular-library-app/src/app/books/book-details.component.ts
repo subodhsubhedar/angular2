@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from './book';
+import { StatusMsgEmitterService } from '../common/status-msg-emitter.service';
 
 @Component({
     templateUrl: 'book-details.component.html'
@@ -12,7 +13,8 @@ export class BookDetailsComponent implements OnInit {
 
     bookID: number;
 
-    constructor(private route: ActivatedRoute, private router: Router) {
+    constructor(private route: ActivatedRoute, private router: Router, private statusMsgService: StatusMsgEmitterService) {
+
     }
 
     ngOnInit() {

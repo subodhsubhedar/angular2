@@ -1,4 +1,3 @@
-import { Book } from "../books/book";
 
 
 export class Subject {

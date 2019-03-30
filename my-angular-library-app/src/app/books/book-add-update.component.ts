@@ -37,6 +37,7 @@ export class AddUpdateBookComponent implements OnInit {
         }
 
         this.statusMsgService.notifyMsg('');
+        this.statusMsgService.notifyError('');
     }
 
     ngOnInit() {
@@ -51,6 +52,8 @@ export class AddUpdateBookComponent implements OnInit {
         this.libraryBookService.addBook(this.book).subscribe(res => {
             console.log("add new Book done success!! ..");
             this.statusMsgService.notifyMsg('New Book : "' + res.title + '" added Successfully.');
+            this.statusMsgService.notifyError('');
+
             this.router.navigate(['/getBook', res.bookId]);
         });
 
@@ -60,6 +63,8 @@ export class AddUpdateBookComponent implements OnInit {
         this.libraryBookService.updateBook(this.book).subscribe(res => {
             console.log("Update Book done successfully !! ..");
             this.statusMsgService.notifyMsg('Book : "' + res.title + '" updated Successfully.');
+            this.statusMsgService.notifyError('');
+            
             this.router.navigate(['/getBook', res.bookId]);
         });
 

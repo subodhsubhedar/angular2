@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from './book';
 import { StatusMsgEmitterService } from '../common/status-msg-emitter.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { Observable } from 'rxjs';
+
 
 @Component({
     templateUrl: 'library-books.component.html'

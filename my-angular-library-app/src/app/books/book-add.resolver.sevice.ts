@@ -9,7 +9,8 @@ export class LibraryAddBookResolverService implements Resolve<Subject[]> {
 
     constructor(private libraryBookService: LibraryBookService) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Subject[]> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): 
+    Observable<Subject[]> {
         return this.libraryBookService.findAllSubjects();
 
     }
