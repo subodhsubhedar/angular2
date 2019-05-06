@@ -1,0 +1,14 @@
+[
+  {
+    "parentTaskId": 1,
+    "parentTaskDesc": "Initiate Loan Application"
+  },
+  {
+    "parentTaskId": 2,
+    "parentTaskDesc": "Loan Application Closure"
+  },
+  {
+    "parentTaskId": 6,
+    "parentTaskDesc": "KYC"
+  }
+]

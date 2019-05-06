@@ -1,0 +1,17 @@
+<form name="loginForm" (ngSubmit)="loginForm.form.valid && login()" #loginForm="ngForm" novalidate>
+    <div [ngClass]="{ 'has-error': loginForm.submitted && !username.valid }">
+        <label for="username">Username</label>
+        <input type="text" name="username" [(ngModel)]="userModel.username" #username="ngModel" required />
+        <div *ngIf="loginForm.submitted
+          && !username.valid">Username is required</div>
+    </div>
+    <div [ngClass]="{ 'has-error': loginForm.submitted && !password.valid }">
+        <label for="password">Password</label>
+        <input type="password" name="password" [(ngModel)]="userModel.password" #password="ngModel" required />
+        <div *ngIf="loginForm.submitted
+          && !password.valid">Password is required</div>
+    </div>
+    <div>
+        <button [disabled]="loginForm.invalid">Login</button>
+    </div>
+</form>

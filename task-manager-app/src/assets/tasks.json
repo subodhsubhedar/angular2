@@ -1,0 +1,162 @@
+[
+  {
+    "taskId": 1,
+    "taskDesc": "Initiate Loan Application",
+    "startDate": "2019-05-03",
+    "endDate": "2019-12-31",
+    "priority": 20,
+    "taskCompleted": false
+  },
+  {
+    "taskId": 2,
+    "taskDesc": "Loan Application Closure",
+    "startDate": "2019-05-03",
+    "endDate": "2019-12-31",
+    "priority": 20,
+    "taskCompleted": false
+  },
+  {
+    "taskId": 3,
+    "taskDesc": "Accept Loan Application",
+    "startDate": "2019-05-03",
+    "endDate": "2019-12-31",
+    "priority": 20,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 1,
+      "parentTaskDesc": "Initiate Loan Application"
+    }
+  },
+  {
+    "taskId": 4,
+    "taskDesc": "Check Loan Eligibility",
+    "startDate": "2019-05-03",
+    "endDate": "2019-12-31",
+    "priority": 20,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 1,
+      "parentTaskDesc": "Initiate Loan Application"
+    }
+  },
+  {
+    "taskId": 5,
+    "taskDesc": "Check Property documents",
+    "startDate": "2019-05-03",
+    "endDate": "2019-12-31",
+    "priority": 20,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 1,
+      "parentTaskDesc": "Initiate Loan Application"
+    }
+  },
+  {
+    "taskId": 6,
+    "taskDesc": "KYC",
+    "startDate": "2019-05-03",
+    "endDate": "2019-12-31",
+    "priority": 20,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 1,
+      "parentTaskDesc": "Initiate Loan Application"
+    }
+  },
+  {
+    "taskId": 7,
+    "taskDesc": "Approve Loan Application",
+    "startDate": "2019-05-03",
+    "endDate": "2019-12-31",
+    "priority": 20,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 1,
+      "parentTaskDesc": "Initiate Loan Application"
+    }
+  },
+  {
+    "taskId": 7,
+    "taskDesc": "Release payment to Construction company",
+    "startDate": "2019-05-03",
+    "endDate": "2019-12-31",
+    "priority": 20,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 1,
+      "parentTaskDesc": "Initiate Loan Application"
+    }
+  },
+  {
+    "taskId": 8,
+    "taskDesc": "Start EMI",
+    "startDate": "2019-05-03",
+    "endDate": "2019-12-31",
+    "priority": 20,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 1,
+      "parentTaskDesc": "Initiate Loan Application"
+    }
+  },
+  {
+    "taskId": 9,
+    "taskDesc": "Verify Customer documents",
+    "startDate": "2019-05-04",
+    "endDate": "2019-06-30",
+    "priority": 30,
+    "taskCompleted": true,
+    "parentTask": {
+      "parentTaskId": 6,
+      "parentTaskDesc": "KYC"
+    }
+  },
+  {
+    "taskId": 10,
+    "taskDesc": "Check for criminal records",
+    "startDate": "2019-05-04",
+    "endDate": "2019-06-30",
+    "priority": 30,
+    "taskCompleted": true,
+    "parentTask": {
+      "parentTaskId": 6,
+      "parentTaskDesc": "KYC"
+    }
+  },
+  {
+    "taskId": 11,
+    "taskDesc": "Check for PEP",
+    "startDate": "2019-05-04",
+    "endDate": "2019-06-30",
+    "priority": 30,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 6,
+      "parentTaskDesc": "KYC"
+    }
+  },
+  {
+    "taskId": 12,
+    "taskDesc": "Approve KYC",
+    "startDate": "2019-05-04",
+    "endDate": "2019-06-30",
+    "priority": 30,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 6,
+      "parentTaskDesc": "KYC"
+    }
+  },
+  {
+    "taskId": 13,
+    "taskDesc": "Reject KYC",
+    "startDate": "2019-05-04",
+    "endDate": "2019-06-30",
+    "priority": 30,
+    "taskCompleted": false,
+    "parentTask": {
+      "parentTaskId": 6,
+      "parentTaskDesc": "KYC"
+    }
+  }
+]

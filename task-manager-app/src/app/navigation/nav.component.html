@@ -1,0 +1,44 @@
+<div>
+	<main>
+		<section id="taskManagerNavigation">
+			<header>
+				<nav class="navbar nav-fill navbar-dark bg-dark ">
+					<div class="container-fluid">
+						<div class="navbar-collapse" id="navbarNav">
+							<ul class="navbar-nav">
+
+								<div class="row">
+									<div class="col-sm-2" *ngIf="isUSerLoggedIn">
+										<li class="nav-item">
+											<a class="nav-link" [routerLink]="['/addTask']">
+												Add Task</a>
+										</li>
+									</div>
+									<div class="col-sm-2" *ngIf="isUSerLoggedIn">
+										<li class="nav-item">
+											<a class="nav-link" [routerLink]="['/viewAllTasks']">
+												View Task</a>
+										</li>
+									</div>
+									<div class="col-sm-2" *ngIf="!isUSerLoggedIn">
+										<li class="nav-item">
+											<a class="nav-link" [routerLink]="['/login']">
+												Login</a>
+										</li>
+									</div>
+									<div class="col-sm-2" *ngIf="isUSerLoggedIn"  align="right">
+										<li class="nav-item">
+											<a class="nav-link" [routerLink]="['/logout']">
+												Logout</a>
+										</li>
+									</div>
+
+								</div>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
+		</section>
+	</main>
+</div>

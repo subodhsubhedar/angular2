@@ -1,0 +1,166 @@
+<div class="container">
+	<br>
+<div class="form-group">
+  <h3><span class="badge badge-info"><B>Total Tasks : {{filteredTasks.length}}</B></span></h3>
+  <h3><span class="badge badge-secondary"><B>Total Parent Tasks : {{allParentTasksList.length}}</B></span></h3>
+  
+ </div>
+
+
+<div class="card bg-light mb-3" >
+  <div class="card-header"><h5>Search for a Task</h5></div>
+  <div class="card-body">
+   
+
+<div class="form-row">
+
+    <div class="form-group col-md-6">
+        <b><label for="filterTaskKey">Task:</label></b>
+        <input [(ngModel)]="searchTaskDesc" type="text" class="form-control" id="filterTaskKey" name="taskDescKey"
+            placeholder="Enter Task Desc">
+        <br>
+    </div>
+
+    <div class="form-group col-md-6">
+        <b><label for="filterParentTaskKey">Parent Task:</label></b>
+        <select [(ngModel)]="searchParentTask" class='form-control' name="parentTaskName"
+            id="parentTaskId">
+            <option [ngValue]="defaultparentTaskId">Select a Parent Task</option>
+            <option *ngFor="let parentTaskItem of allParentTasksList" [ngValue]="parentTaskItem.parentTaskId"
+                [label]="parentTaskItem.parentTaskDesc">
+            </option>
+        </select>
+
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-3">
+        <b><label for="priorityFromId" class="control-label">Priority From:</label></b>
+        <input type="number" name="priorityFromName" min="0" max="30" class="form-control" id="priorityFromId"
+            [(ngModel)]="searchPriorityFrom">
+    </div>
+
+    <div class="form-group col-md-3">
+        <b><label for="priorityToId" class="control-label">Priority To:</label></b>
+        <input type="number" name="priorityToName" min="0" max="30" class="form-control" id="priorityToId"
+            [(ngModel)]="searchPriorityTo">
+    </div>
+
+    <div class="form-group col-md-3">
+        <b><label for="startDateId">Start Date:</label></b>
+        <input type="date" class="form-control" name="startDateName" id="startDateId" placeholder="Start Date"
+            [(ngModel)]="searchStartDate">
+    </div>
+
+    <div class="form-group col-md-3">
+        <b><label for="endDateId">End Date:</label></b>
+        <input type="date" class="form-control" name="endDateName" id="endDateId" placeholder="End Date"
+            [(ngModel)]="searchEndDate">
+    </div>
+
+
+</div>  
+
+
+  </div>
+</div>
+
+<br>
+<br>
+<div *ngIf='filteredTasks && filteredTasks?.length' >
+<table class="table table-hover" *ngFor='let task of filteredTasks | tasksSearchFilter : searchTaskDesc : searchParentTask : searchStartDate : searchEndDate : searchPriorityFrom : searchPriorityTo as searchResuts'>
+    <thead class="thead-dark" align="center">
+            <th scope="col" >Task</th>
+            <th scope="col" >Parent</th>
+            <th scope="col" >Priority</th>
+            <th scope="col" >Start</th>
+            <th scope="col" >End</th>
+            <th scope="col" ></th>
+            <th scope="col" ></th>
+            <th scope="col" ></th>
+    </thead>
+    <tbody>
+
+            <tr>
+                <td align="center">
+    
+                 <div *ngIf="task.taskCompleted; else elseBlockTaskDesc">
+                        <div class="card text-white bg-success" style="width: 12rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{task.taskDesc}}</h5>
+                                (Task Finished)
+                            </div>
+                        </div>
+                   </div>
+                <ng-template #elseBlockTaskDesc>   
+                        <div class="card text-white bg-info" style="width: 12rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{task.taskDesc}}</h5>
+                            </div>
+                        </div>
+                </ng-template>        
+
+                
+                </td>
+                <td align="center">
+                
+                        <div class="card bg-light" style="width: 12rem;">
+                            <div class="card-body">
+                                <div *ngIf="task.parentTask?.parentTaskDesc; else elseBlock"> <h5 class="card-title">{{task.parentTask?.parentTaskDesc}}</h5></div>
+                                <ng-template #elseBlock>   <h5 class="card-title">This task has no Parent.</h5></ng-template>                                
+                            </div>
+                        </div>
+                
+                </td>
+
+                <td align="center">
+                
+                        {{task.priority}}
+                
+                </td>
+                <td align="center">
+                
+                        {{task.startDate}}
+                
+                </td>
+                <td align="center">
+                
+                        {{task.endDate}}
+                
+                </td>
+
+                <td align="center" style="width: 8rem;">
+                
+                        <div *ngIf='task.taskCompleted == false'>
+                            <button type="button" class="btn btn-outline-primary"
+                                (click)='onEditTask(task.taskId)'>Edit</button>
+                        </div>
+                
+                </td>
+                <td align="center" style="width: 8rem;">
+                
+                        <div *ngIf='task.taskCompleted == false'>
+                            <button type="button" class="btn btn-outline-info" (click)='onEndTask(task)'>End
+                                Task</button>
+                        </div>
+                
+                </td>
+
+                <td align="center" style="width: 8rem;">
+                
+                        <div *ngIf='task.taskCompleted == false'>
+                            <button type="button" class="btn btn-outline-danger"
+                                (click)='onDeleteTask(task)'>Delete</button>
+                        </div>
+                
+                </td>
+            </tr>
+
+    </tbody>
+    <br>
+    <br>
+</table>
+
+</div>
+</div>

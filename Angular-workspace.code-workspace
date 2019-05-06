@@ -20,6 +20,9 @@
 		},
 		{
 			"path": "my-angular-library-app"
+		},
+		{
+			"path": "task-manager-app"
 		}
 	],
 	"settings": {}
