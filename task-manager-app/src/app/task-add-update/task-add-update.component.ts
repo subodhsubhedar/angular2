@@ -35,6 +35,11 @@ export class AddUpdateTaskComponent implements OnInit {
             this.defaultParentTaskId = 0;
         } else {
             this.flow = "update";
+
+            if(!this.task.parentTask){
+                this.defaultParentTaskId = 0;
+                this.task.parentTask = new ParentTask(this.defaultParentTaskId,null);
+            }
         }
 
         this.statusMsgService.notifyMsg('');
@@ -46,13 +51,13 @@ export class AddUpdateTaskComponent implements OnInit {
     }
 
     addNewTask(task: Task): void {
-        console.log('Add request received for Task :' + this.task.taskDesc);
+        console.log('Add request received for Task :' + this.task.task);
 
         console.log('Task obj is :' + task.toString());
 
         this.taskManagerService.addTask(this.task).subscribe(res => {
             console.log("add new Task done success!! ..");
-            this.statusMsgService.notifyMsg('New Task : "' + res.taskDesc + '" added Successfully.');
+            this.statusMsgService.notifyMsg('New Task : "' + res.task + '" added Successfully.');
             this.statusMsgService.notifyError('');
 
             this.router.navigate(['/viewAllTasks']);
@@ -69,12 +74,12 @@ export class AddUpdateTaskComponent implements OnInit {
 
 
     updateTask(task: Task): void {
-        console.log('Update request received for Task :' + this.task.taskDesc);
+        console.log('Update request received for Task :' + this.task.task);
         console.log('Task obj is :' + task.toString());
 
         this.taskManagerService.updateTask(this.task).subscribe(res => {
             console.log("Update Taask done successfully !! ..");
-            this.statusMsgService.notifyMsg('Task : "' + res.taskDesc + '" updated Successfully.');
+            this.statusMsgService.notifyMsg('Task : "' + res.task + '" updated Successfully.');
             this.statusMsgService.notifyError('');
 
             this.router.navigate(['/viewAllTasks']);

@@ -1,7 +1,7 @@
 
 export class ParentTask {
 
-    parentTaskId: number;
+    parentId: number;
     parentTaskDesc: string;
 
 
@@ -9,13 +9,13 @@ export class ParentTask {
         parentTaskDsc: string
     ) {
 
-        this.parentTaskId = parentTskId;
+        this.parentId = parentTskId;
         this.parentTaskDesc = parentTaskDsc;
     }
 
 
     public toString(): string {
-        return "[ parentTaskId:" + this.parentTaskId + "  parentTaskDesc:" + this.parentTaskDesc + "  ]";
+        return "[ parentTaskId:" + this.parentId + "  parentTaskDesc:" + this.parentTaskDesc + "  ]";
     }
 
 }

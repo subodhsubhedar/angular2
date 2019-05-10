@@ -5,11 +5,11 @@
 </div>
 <div>
   <br>
-  <div class="alert alert-success" role="alert" *ngIf="notifications">
+  <div class="alert alert-success" role="alert" *ngIf="notifications!=null && notifications!=undefined && notifications!=''">
     <b> {{notifications}}</b>
   </div>
 
-  <div class="alert alert-danger" role="alert" *ngIf="errors">
+  <div class="alert alert-danger" role="alert" *ngIf="errors!=null && errors!=undefined && errors!=''">
     <b> {{errors}}</b>
   </div>
 

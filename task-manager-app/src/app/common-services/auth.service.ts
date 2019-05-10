@@ -1,6 +1,6 @@
 import { UserModel } from '../login/login.user';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -9,25 +9,75 @@ export class AuthenticationService {
 
     private taskManagerUrl: string = "http://localhost:8085/login";
 
+    @Output() isUserLoggedIn: EventEmitter<any> = new EventEmitter();
+
+    private _loggedInUserName: string;
+    public get loggedInUserName(): string {
+        return this._loggedInUserName;
+    }
+    public set loggedInUserName(value: string) {
+        this._loggedInUserName = value;
+    }
+
     constructor(private http: HttpClient) {
     }
 
-    login(user: UserModel): Observable<boolean> {
+    login(user: UserModel): boolean {
         console.log("Calling login service...");
         console.log('REQUEST TO ADD JSON :' + JSON.stringify(user))
 
-        return this.http.post<boolean>(this.taskManagerUrl,
-            {
-                userName: user.username,
-                password: user.password
-            }).
-            pipe(tap(data => console.log('http login responded')));
+        let authData = btoa(user.username + ":" + user.password);
+
+        let authHdr = new HttpHeaders({
+            Authorization: "Basic " + authData
+        });
+
+          let retVal = true;
+
+        this.http.get<boolean>(this.taskManagerUrl,
+            { headers: authHdr }
+        ).subscribe(
+            loginSuccess => {
+                console.log('login returned :' + loginSuccess)
+                if (loginSuccess) {
+
+                    sessionStorage.setItem(
+                        'token',
+                        authData);
+
+                    this.isUserLoggedIn.emit(true);
+                    this._loggedInUserName = user.username;
+            
+                } else {
+                    this.isUserLoggedIn.emit(false);
+                    this._loggedInUserName = null;
+            
+                }
+            }
+        );
+        console.log('retVal :' + retVal);
+        return retVal;
     }
 
-    isUserLoggedIn(): boolean {
+    logout(): boolean {
+        sessionStorage.removeItem('token');
+        //check if removed properly
+        let userExists = sessionStorage.getItem('token');
+        if (userExists) {
+            return false;
+        } else {
+            this.isUserLoggedIn.emit(false);
+            return true;
+        }
+    }
+
+    checkUserLoggedIn(): boolean {
         let user = sessionStorage.getItem('token');
-        console.log(!(user === null));
-        return !(user === null)
+        if (user) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

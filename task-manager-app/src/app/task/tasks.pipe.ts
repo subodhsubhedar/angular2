@@ -8,24 +8,19 @@ import { ParentTask } from '../parent-task/parent-task';
 export class TasksFilterPipe implements PipeTransform {
 
   transform(items: Array<Task>, searchTaskDesc: string, searchParentTask: number, searchStartDate: Date, searchEndDate: Date, searchPriorityFrom: number, searchPriorityTo: number): Array<Task> {
-    //  console.log('Pipe search starts:' + searchTaskDesc);
-    console.log('Pipe search starts searchStartDate:' + searchStartDate);
-    // console.log('Pipe search starts:' + searchStartDate);
-    //console.log('Pipe search starts:' + searchEndDate);
-    //console.log('Pipe search starts:' + searchPriorityFrom);
     //console.log('Pipe search starts:' + searchPriorityTo);
 
     if (items && items.length) {
 
       return items.filter((task: Task) => {
 
-        if (searchTaskDesc && (task.taskDesc.toLowerCase().indexOf(searchTaskDesc) == -1)) {
+        if (searchTaskDesc && (task.task.toLowerCase().indexOf(searchTaskDesc) == -1)) {
           return false;
         }
-        console.log('Pipe search starts loop :' + task.startDate);
+
         if (searchParentTask && (
           (task.parentTask == undefined || task.parentTask == null) ||
-          (task.parentTask != undefined && (task.parentTask.parentTaskId != searchParentTask)))
+          (task.parentTask != undefined && (task.parentTask.parentId != searchParentTask)))
         ) {
           return false;
         }

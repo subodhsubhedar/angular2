@@ -21,7 +21,7 @@
                 [class.has-success]="taskDescControl.valid">
                 <b><label for="taskDesc">Task:</label></b>
                 <input type="text" class="form-control" name="taskDesc" id="taskDesc" placeholder="Task Description"
-                    [(ngModel)]="task.taskDesc" maxlength="100" required #taskDescControl="ngModel">
+                    [(ngModel)]="task.task" maxlength="100" required #taskDescControl="ngModel">
                 <span class="help-block" *ngIf="taskDescControl.invalid && taskDescControl.touched">Task Desc is
                     required.</span>
             </div>
@@ -43,10 +43,10 @@
                 [class.has-success]="parentTaskControl.valid">
                 <b><label for="parentTask">Parent Task:</label></b>
 
-                <select [(ngModel)]="task.parentTask.parentTaskId" required #parentTaskControl="ngModel"
+                <select [(ngModel)]="task?.parentTask.parentId" required #parentTaskControl="ngModel"
                     class='form-control' name="parentTaskDesc" id="parentTask">
                     <option [ngValue]="defaultParentTaskId">Select a Parent Task</option>
-                    <option *ngFor="let parentTask of parentTasksList" [ngValue]="parentTask.parentTaskId"
+                    <option *ngFor="let parentTask of parentTasksList" [ngValue]="parentTask?.parentId"
                         [label]="parentTask.parentTaskDesc">
                     </option>
                 </select>

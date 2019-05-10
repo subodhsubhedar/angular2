@@ -20,13 +20,13 @@
             placeholder="Enter Task Desc">
         <br>
     </div>
-
+ 
     <div class="form-group col-md-6">
         <b><label for="filterParentTaskKey">Parent Task:</label></b>
         <select [(ngModel)]="searchParentTask" class='form-control' name="parentTaskName"
             id="parentTaskId">
-            <option [ngValue]="defaultparentTaskId">Select a Parent Task</option>
-            <option *ngFor="let parentTaskItem of allParentTasksList" [ngValue]="parentTaskItem.parentTaskId"
+            <option [ngValue]="defaultParentTaskId">Select a Parent Task</option>
+            <option *ngFor="let parentTaskItem of allParentTasksList" [ngValue]="parentTaskItem?.parentId"
                 [label]="parentTaskItem.parentTaskDesc">
             </option>
         </select>
@@ -85,10 +85,10 @@
             <tr>
                 <td align="center">
     
-                 <div *ngIf="task.taskCompleted; else elseBlockTaskDesc">
+                 <div *ngIf="task.taskComplete; else elseBlockTaskDesc">
                         <div class="card text-white bg-success" style="width: 12rem;">
                             <div class="card-body">
-                                <h5 class="card-title">{{task.taskDesc}}</h5>
+                                <h5 class="card-title">{{task.task}}</h5>
                                 (Task Finished)
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                 <ng-template #elseBlockTaskDesc>   
                         <div class="card text-white bg-info" style="width: 12rem;">
                             <div class="card-body">
-                                <h5 class="card-title">{{task.taskDesc}}</h5>
+                                <h5 class="card-title">{{task.task}}</h5>
                             </div>
                         </div>
                 </ng-template>        
@@ -130,26 +130,26 @@
                 
                 </td>
 
-                <td align="center" style="width: 8rem;">
+                <td align="center" style="width: 6rem;">
                 
-                        <div *ngIf='task.taskCompleted == false'>
+                        <div *ngIf='task.taskComplete==null || task.taskComplete == false'>
                             <button type="button" class="btn btn-outline-primary"
                                 (click)='onEditTask(task.taskId)'>Edit</button>
                         </div>
                 
                 </td>
-                <td align="center" style="width: 8rem;">
+                <td align="center" style="width: 6rem;">
                 
-                        <div *ngIf='task.taskCompleted == false'>
+                        <div *ngIf='task.taskComplete==null || task.taskComplete == false'>
                             <button type="button" class="btn btn-outline-info" (click)='onEndTask(task)'>End
                                 Task</button>
                         </div>
                 
                 </td>
 
-                <td align="center" style="width: 8rem;">
+                <td align="center" style="width: 6rem;">
                 
-                        <div *ngIf='task.taskCompleted == false'>
+                        <div *ngIf='task.taskComplete==null || task.taskComplete == false'>
                             <button type="button" class="btn btn-outline-danger"
                                 (click)='onDeleteTask(task)'>Delete</button>
                         </div>

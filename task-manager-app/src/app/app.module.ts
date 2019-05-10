@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './common-services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuardService } from './common-services/auth.guard.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { AuthGuardService } from './common-services/auth.guard.service';
     TasksManagerResolverService,
     ParentTaskManagerResolverService,
     TasksManagerResolverService,
+    AuthGuardService,
     TaskActivateGuardAndResolverService,
     AuthenticationService,
     {
@@ -104,7 +106,8 @@ import { AuthGuardService } from './common-services/auth.guard.service';
       provide: HTTP_INTERCEPTORS,
       useClass: TaskManagerBasicAuthInterceptor,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

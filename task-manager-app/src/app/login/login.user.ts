@@ -9,4 +9,4 @@ export class UserModel {
         this.password = pwd;
     }
 
-}
+} 
