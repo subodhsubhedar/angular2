@@ -17,6 +17,7 @@ export class TasksComponent implements OnInit {
   filteredTasks: Task[];
   defaultParentTaskId: number;
 
+  endTskDt: any = (this.datePipe.transform(new Date(), "yyyy-MM-dd"));
 
   private _searchTaskDesc: string;
   private _searchStartDate: Date;
@@ -78,11 +79,8 @@ export class TasksComponent implements OnInit {
       console.log('calling end task for : ' + task.taskId);
       //set end date to current date and set completion flag
       taskToBeUpdated.taskComplete = true;
-      taskToBeUpdated.endDate = new Date(this.datePipe.transform(new Date(), "yyyy-MM-dd"));
-
-      console.log();
-
-      console.log('taskToBeUpdated : '+taskToBeUpdated);
+      taskToBeUpdated.endDate = this.endTskDt;
+      console.log('taskToBeUpdated : ' + taskToBeUpdated);
 
       this.taskManagerService.updateTask(taskToBeUpdated).subscribe(res => {
 

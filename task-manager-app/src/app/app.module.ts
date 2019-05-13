@@ -25,6 +25,8 @@ import { AuthenticationService } from './common-services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuardService } from './common-services/auth.guard.service';
 import { DatePipe } from '@angular/common';
+import { LoggingService } from './common-services/logging.service';
+import { LogpublishersService } from './common-services/logging.publishers.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,7 @@ import { DatePipe } from '@angular/common';
       {
         path: 'home',
         component: HomeComponent,
-        canActivate: [AuthGuardService]      
+        canActivate: [AuthGuardService]
       },
       {
         path: 'login',
@@ -75,7 +77,7 @@ import { DatePipe } from '@angular/common';
       {
         path: 'logout',
         component: LogoutComponent,
-        canActivate: [AuthGuardService]  
+        canActivate: [AuthGuardService]
       },
       {
         path: '**',
@@ -96,6 +98,8 @@ import { DatePipe } from '@angular/common';
     TasksManagerResolverService,
     AuthGuardService,
     TaskActivateGuardAndResolverService,
+    LoggingService,
+    LogpublishersService,
     AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
