@@ -8,7 +8,6 @@ import { ParentTask } from '../parent-task/parent-task';
 export class TasksFilterPipe implements PipeTransform {
 
   transform(items: Array<Task>, searchTaskDesc: string, searchParentTask: number, searchStartDate: Date, searchEndDate: Date, searchPriorityFrom: number, searchPriorityTo: number): Array<Task> {
-    //console.log('Pipe search starts:' + searchPriorityTo);
 
     if (items && items.length) {
 

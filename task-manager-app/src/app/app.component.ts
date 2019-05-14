@@ -1,3 +1,4 @@
+import { LoggingService } from './common-services/logging.service';
 import { Component } from '@angular/core';
 import { StatusMsgEmitterService } from './common-services/status-msg-emitter.service';
 
@@ -11,7 +12,8 @@ export class AppComponent {
   notifications: string;
   errors: string;
 
-  constructor(private statusMsgEmitterService: StatusMsgEmitterService) {
+  constructor(private statusMsgEmitterService: StatusMsgEmitterService, private logger :LoggingService) {
+    this.logger.debug('AppComponent initialized..');
     statusMsgEmitterService.msgEmitter.subscribe(message => this.onNotify(message));
     statusMsgEmitterService.errMsgEmitter.subscribe(message => this.onErrorNotify(message));
   }

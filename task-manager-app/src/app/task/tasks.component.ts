@@ -5,6 +5,7 @@ import { Task } from './task';
 import { TaskManagerService } from '../service/task-manager.service';
 import { ParentTask } from '../parent-task/parent-task';
 import { DatePipe } from '@angular/common';
+import { LoggingService } from '../common-services/logging.service';
 
 
 @Component({
@@ -31,8 +32,10 @@ export class TasksComponent implements OnInit {
   }
 
   constructor(private taskManagerService: TaskManagerService, private route: ActivatedRoute,
-    private router: Router, private statusMsgService: StatusMsgEmitterService, private datePipe: DatePipe) {
-    console.log("Calling taskManagerService");
+    private router: Router, private statusMsgService: StatusMsgEmitterService,
+    private datePipe: DatePipe, private logger: LoggingService) {
+
+    this.logger.debug("TasksComponent Calling backend for allTasksList, allParentTasksList...");
 
     this.allTasksList = route.snapshot.data['tasksList'];
     this.allParentTasksList = route.snapshot.data['parentTasksList']
@@ -41,22 +44,22 @@ export class TasksComponent implements OnInit {
     this._searchParentTask = this.defaultParentTaskId;
 
     this.filteredTasks = this.allTasksList;
-    //this.statusMsgService.notifyMsg('');
-
   }
 
   onDeleteTask(task: Task): void {
     let deleteTaskDesc = task.task;
     var answer = confirm("Are you sure you want to delete : " + deleteTaskDesc);
     if (answer) {
-      console.log('calling delete for : ' + task.taskId);
+
+      this.logger.debug('TasksComponent calling delete for : ' + task.taskId);
 
       this.taskManagerService.deleteTask(task.taskId).subscribe(res => {
-        console.log('Delete done callback ' + JSON.stringify(res));
-        console.log('Delete performed successfully ');
+        this.logger.debug('TasksComponent Delete done callback receieved as : ', [res]);
+
         this.statusMsgService.notifyMsg('Task with desc : "' + deleteTaskDesc + '" deleted successfully.');
 
         //refresh the model
+        this.logger.debug('TasksComponent refreshing the model after delete task..');
         this.taskManagerService.findAllTasks().subscribe(taskListData => {
           this.allTasksList = taskListData;
           this.filteredTasks = this.allTasksList;
@@ -66,6 +69,7 @@ export class TasksComponent implements OnInit {
   }
 
   onEditTask(taskId: number): void {
+    this.logger.debug('TasksComponent onEditTask, navigating to /updateTask');
     this.router.navigate(['/updateTask', taskId]);
   }
 
@@ -76,19 +80,23 @@ export class TasksComponent implements OnInit {
 
     var answer = confirm("Are you sure you want to End the task : '" + endTaskDesc + "' ? The task will be marked as finished & no longer be available for any updates.");
     if (answer) {
-      console.log('calling end task for : ' + task.taskId);
+
+      this.logger.debug('TasksComponent calling end task for : ' + task.taskId);
       //set end date to current date and set completion flag
       taskToBeUpdated.taskComplete = true;
       taskToBeUpdated.endDate = this.endTskDt;
-      console.log('taskToBeUpdated : ' + taskToBeUpdated);
+      this.logger.debug('TasksComponent taskToBeUpdated : ' + taskToBeUpdated);
+
 
       this.taskManagerService.updateTask(taskToBeUpdated).subscribe(res => {
 
-        console.log("Update end task done successfully !! ..");
+        this.logger.debug("TasksComponent Update end task done successfully !! ..");
+
         this.statusMsgService.notifyMsg('Task : "' + res.task + '" marked as finished successfully.');
         this.statusMsgService.notifyError('');
 
         //refresh the model
+        this.logger.debug('TasksComponent refreshing the model after ending task..');
         this.taskManagerService.findAllTasks().subscribe(taskListData => {
           this.allTasksList = taskListData;
           this.filteredTasks = this.allTasksList;

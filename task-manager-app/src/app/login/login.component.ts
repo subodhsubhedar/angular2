@@ -3,6 +3,7 @@ import { AuthenticationService } from '../common-services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StatusMsgEmitterService } from '../common-services/status-msg-emitter.service';
+import { LoggingService } from '../common-services/logging.service';
 
 @Component({
     templateUrl: 'login.component.html'
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authService: AuthenticationService,
         private statusMsgService: StatusMsgEmitterService,
+        private logger: LoggingService
     ) {
         this.userModel = new UserModel('', '');
       
@@ -35,14 +37,17 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        this.logger.debug('Login controller, calling auth service to initiate login...');
+
         let loginReqSent = this.authService.login(this.userModel);
 
         if (loginReqSent) {
             this.authService.isUserLoggedIn.subscribe(isLoggedIn => 
                 {this._isUSerLoggedIn = isLoggedIn;
-                    console.log('isLoggedIn event emitted :'+isLoggedIn);
+                    this.logger.debug('isLoggedIn event subscription returned as :'+isLoggedIn);
+
                     if (this._isUSerLoggedIn) {
-                        console.log('loginReqSent: user status initiating navigation');
+                        this.logger.debug('loginReq sucessful, initiating navigation to home page...')
                         this.router.navigate(['']);
                     } 
                 });

@@ -3,6 +3,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { LoggingService, LogLevel } from './logging.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -19,12 +20,13 @@ export class AuthenticationService {
         this._loggedInUserName = value;
     }
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private logger: LoggingService) {
     }
 
     login(user: UserModel): boolean {
-        console.log("Calling login service...");
-        console.log('REQUEST TO ADD JSON :' + JSON.stringify(user))
+
+        this.logger.debug("AuthenticationService Calling login service logged through logger");
+        this.logger.debug("AuthenticationService REQUEST TO Authenticate  :", [user.username]);
 
         let authData = btoa(user.username + ":" + user.password);
 
@@ -32,13 +34,14 @@ export class AuthenticationService {
             Authorization: "Basic " + authData
         });
 
-          let retVal = true;
+        let retVal = true;
 
         this.http.get<boolean>(this.taskManagerUrl,
             { headers: authHdr }
         ).subscribe(
             loginSuccess => {
-                console.log('login returned :' + loginSuccess)
+                this.logger.debug('AuthenticationService login returned :' + loginSuccess);
+
                 if (loginSuccess) {
 
                     sessionStorage.setItem(
@@ -47,35 +50,42 @@ export class AuthenticationService {
 
                     this.isUserLoggedIn.emit(true);
                     this._loggedInUserName = user.username;
-            
+
                 } else {
                     this.isUserLoggedIn.emit(false);
                     this._loggedInUserName = null;
-            
+
                 }
             }
         );
-        console.log('retVal :' + retVal);
+        this.logger.debug('AuthenticationService retVal :' + retVal);
         return retVal;
     }
 
     logout(): boolean {
+        this.logger.debug("AuthenticationService Initiating Logout...")
+
         sessionStorage.removeItem('token');
         //check if removed properly
         let userExists = sessionStorage.getItem('token');
         if (userExists) {
+            this.logger.debug("AuthenticationService User still exists even after Logout...")
             return false;
         } else {
+            this.logger.debug("AuthenticationService User Logged out sucessfully...")
             this.isUserLoggedIn.emit(false);
             return true;
         }
     }
 
     checkUserLoggedIn(): boolean {
+        this.logger.debug("AuthenticationService Check if user logged in ..");
         let user = sessionStorage.getItem('token');
         if (user) {
+            this.logger.debug("AuthenticationService User is logged in.");
             return true;
         } else {
+            this.logger.debug("AuthenticationService User is logged out.");
             return false;
         }
     }

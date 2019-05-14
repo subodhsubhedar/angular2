@@ -51,6 +51,7 @@ import { LogpublishersService } from './common-services/logging.publishers.servi
         component: AddUpdateTaskComponent,
         canActivate: [AuthGuardService],
         resolve: {
+          tasksList: TasksManagerResolverService,
           parentTasksList: ParentTaskManagerResolverService,
         },
         runGuardsAndResolvers: 'always'
@@ -61,6 +62,7 @@ import { LogpublishersService } from './common-services/logging.publishers.servi
         canActivate: [AuthGuardService, TaskActivateGuardAndResolverService],
         resolve: {
           parentTasksList: ParentTaskManagerResolverService,
+          tasksList: TasksManagerResolverService,
           task: TaskActivateGuardAndResolverService
         },
         runGuardsAndResolvers: 'always'
