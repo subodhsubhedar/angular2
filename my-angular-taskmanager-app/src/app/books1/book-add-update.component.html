@@ -1,0 +1,92 @@
+<br>
+<br>
+
+<!--Angular generated form model : {{addPostForm.value|json}}-->
+<br>
+
+<div class="card-header bg-primary  text-white">
+
+    <div *ngIf="flow == 'add'">
+        Add New Book
+    </div>
+    <div *ngIf="flow == 'update'">
+        Update Book
+    </div>
+</div>
+<div class="card container">
+    <br>
+    <div class="card-block">
+        <form #addBookForm="ngForm">
+
+            <div class="form-group" [class.has-error]="bookTitleControl.invalid && bookTitleControl.touched"
+                [class.has-success]="bookTitleControl.valid">
+                <b><label for="title">Title</label></b>
+                <input type="text" class="form-control" name="title" id="title" placeholder="Title" [(ngModel)]="book.title"
+                    maxlength="100" required #bookTitleControl="ngModel">
+                <span class="help-block" *ngIf="bookTitleControl.invalid && bookTitleControl.touched">Book Title is
+                    required.</span>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6 " [class.has-error]="bookPriceControl.invalid && bookPriceControl.touched"
+                    [class.has-success]="bookPriceControl.valid">
+                    <b><label for="price" class="control-label">Book Price</label></b>
+                    <input type="number" name="price" min="1" class="form-control" id="price" [(ngModel)]="book.price"
+                        #bookPriceControl="ngModel" placeholder="Price" required>
+                    <span class="help-block" *ngIf="bookPriceControl.invalid && bookPriceControl.touched">Book Price is
+                        required.</span>
+                </div>
+                <div class="form-group col-md-6 " [class.has-error]="bookVolumeControl.invalid && bookVolumeControl.touched"
+                    [class.has-success]="bookVolumeControl.valid">
+                    <b><label for="volume" class="control-label">Book Volume</label></b>
+                    <input type="number" name="volume" min="1" max="10" class="form-control" id="volume" [(ngModel)]="book.volume"
+                        #bookVolumeControl="ngModel" placeholder="Price" required>
+                    <span class="help-block" *ngIf="bookVolumeControl.invalid && bookVolumeControl.touched">Book Volume
+                        is
+                        required.</span>
+                </div>
+            </div>
+
+
+            <div class="form-group" [class.has-error]="publishDateControl.invalid && publishDateControl.touched"
+                [class.has-success]="publishDateControl.valid">
+                <b><label for="title">Publish Date</label></b>
+                <input type="date" class="form-control" name="publishDate" id="publishDate" placeholder="Publish Date"
+                    [(ngModel)]="book.publishDate" required #publishDateControl="ngModel">
+                <span class="help-block" *ngIf="publishDateControl.invalid && publishDateControl.touched">Publish Date
+                    is
+                    required.</span>
+            </div>
+
+
+
+            <div class="form-group" [class.has-error]="bookSubjectControl.invalid && bookSubjectControl.touched"
+                [class.has-success]="bookSubjectControl.valid">
+                <b><label for="title">Subject</label></b>
+
+                <select [(ngModel)]="book.subject.subjectId" required #bookSubjectControl="ngModel" class='form-control' name="subjectName"
+                    id="subjectId">
+                    <option [ngValue]="defaultSubjId" >Select a Subject</option>
+                    <option *ngFor="let subjectItem of subjectList" [ngValue]="subjectItem.subjectId" [label]="subjectItem.subtitle">
+                    </option>
+                </select>
+
+            </div>
+            <br>
+            <br>
+
+            <div class="form-group col-md-6" *ngIf="flow == 'add'">
+                <p class="lead" align="left">
+                    <button type="submit" class="btn btn-primary" [disabled]="addBookForm.invalid" (click)="addNewBook(book)">Submit</button>
+                </p>
+            </div>
+            <div class="form-group col-md-6" *ngIf="flow == 'update'">
+                <p class="lead" align="left">
+                    <button type="submit" class="btn btn-primary" [disabled]="addBookForm.invalid" (click)="updateBook(book)">Update</button>
+                </p>
+            </div>
+
+        </form>
+    </div>
+</div>

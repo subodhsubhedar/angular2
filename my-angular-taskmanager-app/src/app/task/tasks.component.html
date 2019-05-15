@@ -1,0 +1,139 @@
+<br>
+<div class="form-group">
+    <label for="totalAvailableTasks">Total Tasks : {{filteredTasks.length}}</label>
+    <label for="totalAvailableTasks">Total Parent Tasks : {{allParentTasksList.length}}</label>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <b><label for="filterTaskKey">Task:</label></b>
+        <input [(ngModel)]='tasksListFilter.taskDesc' type="text" class="form-control" id="filterTaskKey"
+            placeholder="Enter Task Desc">
+        <br>
+    </div>
+
+    <div class="form-group col-md-6">
+        <b><label for="filterParentTaskKey">Parent Task:</label></b>
+        <select [(ngModel)]="tasksListFilter.parentTask.parentTaskId" class='form-control' name="parentTaskName"
+            id="parentTaskId">
+            <option [ngValue]="defaultparentTaskId">Select a Parent Task</option>
+            <option *ngFor="let parentTaskItem of allParentTasksList" [ngValue]="parentTaskItem.parentTaskId"
+                [label]="parentTaskItem.parentTaskDesc">
+            </option>
+        </select>
+
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-3">
+        <b><label for="priorityFromId" class="control-label">Priority From:</label></b>
+        <input type="number" name="priorityFromName" min="0" max="30" class="form-control" id="priorityFromId"
+            [(ngModel)]="priorityFrom">
+    </div>
+
+    <div class="form-group col-md-3">
+        <b><label for="priorityToId" class="control-label">Priority To:</label></b>
+        <input type="number" name="priorityToName" min="0" max="30" class="form-control" id="priorityToId"
+            [(ngModel)]="priorityTo">
+    </div>
+
+    <div class="form-group col-md-3">
+        <b><label for="startDateId">Start Date:</label></b>
+        <input type="date" class="form-control" name="startDateName" id="startDateId" placeholder="Start Date"
+            [(ngModel)]="tasksListFilter.startDate">
+    </div>
+
+    <div class="form-group col-md-3">
+        <b><label for="endDateId">End Date:</label></b>
+        <input type="date" class="form-control" name="endDateName" id="endDateId" placeholder="End Date"
+            [(ngModel)]="tasksListFilter.endDate">
+    </div>
+
+
+</div>
+
+<div class="alert alert-info" role="alert" *ngIf='filteredTasks?.length == 0'>
+    <b> No Results Found.</b>
+</div>
+
+<table class="table table-hover" *ngIf='filteredTasks && filteredTasks?.length' *ngFor='let task of filteredTasks'>
+    <thead class="thead-light">
+        <tr>
+            <th scope="col" class="col-sm-3">Task</th>
+            <th scope="col" class="col-sm-3">Parent</th>
+            <th scope="col" class="col-sm-1">Priority</th>
+            <th scope="col" class="col-sm-1">Start</th>
+            <th scope="col" class="col-sm-1">End</th>
+            <th scope="col" class="col-sm-1"></th>
+            <th scope="col" class="col-sm-1"></th>
+            <th scope="col" class="col-sm-1"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <div class="row">
+            <tr>
+                <td align="center">
+                    <div class="col-sm-3">
+                        <div class="card text-white bg-info mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">{{task.taskDesc}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td align="center">
+                    <div class="col-sm-3">
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">{{task.parentTask.parentTaskDesc}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+                <td align="center">
+                    <div class="col-sm-1">
+                        {{task.priority}}
+                    </div>
+                </td>
+                <td align="center">
+                    <div class="col-sm-1">
+                        {{task.startDate}}
+                    </div>
+                </td>
+                <td align="center">
+                    <div class="col-sm-1">
+                        {{task.endDate}}
+                    </div>
+                </td>
+
+                <td align="center">
+                    <div class="col-sm-1">
+                        <div *ngIf='task.taskCompleted == false'>
+                            <button type="button" class="btn btn-outline-primary"
+                                (click)='onEditTask(task.taskId)'>Edit</button>
+                        </div>
+                    </div>
+                </td>
+                <td align="center">
+                    <div class="col-sm-1">
+                        <div *ngIf='task.taskCompleted == false'>
+                            <button type="button" class="btn btn-outline-info" (click)='onEndTask(task)'>End
+                                Task</button>
+                        </div>
+                    </div>
+                </td>
+
+                <td align="center">
+                    <div class="col-sm-1">
+                        <div *ngIf='task.taskCompleted == false'>
+                            <button type="button" class="btn btn-outline-danger"
+                                (click)='onDeleteTask(task)'>Delete</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </div>
+    </tbody>
+</table>
